@@ -1,4 +1,4 @@
-package ms.model;
+package com.model;
 
 
 import javax.persistence.Entity;

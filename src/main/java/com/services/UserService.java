@@ -1,10 +1,8 @@
-package ms.services;
+package com.services;
 
 
-import ms.dao.UserDao;
-import ms.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.dao.UserDao;
+import com.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

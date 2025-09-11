@@ -1,10 +1,8 @@
-package ms.dao;
+package com.dao;
 
 
-import ms.model.User;
-import org.springframework.stereotype.Component;
+import com.model.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -1,4 +1,4 @@
-package ms.config;
+package com.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan(value = "ms")
+@ComponentScan(value = "com")
 public class AppConfig {
 
     @Autowired
@@ -51,6 +51,7 @@ public class AppConfig {
 
         return em;
     }
+
 
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
