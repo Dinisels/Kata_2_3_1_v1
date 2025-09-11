@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
 
@@ -22,9 +21,9 @@ public class UserController {
 
 
     @GetMapping("/userAll")
-    public String GetAllUser(Model model) {
+    public String GetAllUser() {
 
-        model.addAttribute("users", userDao.getAllUsers());
+        //model.addAttribute("users", userDao.getAllUsers());
 
         return "user/userMainPage";
     }

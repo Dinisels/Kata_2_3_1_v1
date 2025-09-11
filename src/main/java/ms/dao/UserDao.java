@@ -11,19 +11,19 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDao {
+
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    public UserDao() {}
 
     public List<User> getAllUsers(){
         return null;
     }
 
-    public User getUserById(String username){
-        return null;
-    }
+
 
 public void addUser(User user){
     //sessionFactory.getCurrentSession().save(user);
