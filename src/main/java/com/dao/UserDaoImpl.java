@@ -9,20 +9,22 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDao {
+public class UserDaoImpl implements UserDAO{
 
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public UserDao() {}
+    public UserDaoImpl() {}
 
+    @Override
     public List<User> getAllUsers(){
-        return null;
+
+        return entityManager.createQuery("select u from User u",User.class).getResultList();
     }
 
 
-
+@Override
 public void addUser(User user){
     //sessionFactory.getCurrentSession().save(user);
     entityManager.persist(user);

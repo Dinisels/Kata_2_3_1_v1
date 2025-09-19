@@ -1,24 +1,25 @@
 package com.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
 
-    private String userName;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "age")
     private int age;
+    @Column(name = "email")
     private String email;
 
-    public User(int id, String userName, int age, String email) {
-        this.userName = userName;
+    public User(int id, String Name, int age, String email) {
+        this.name = Name;
         this.age = age;
         this.email = email;
     }
@@ -27,13 +28,20 @@ public class User {
 
     }
 
-
-    public String getUserName() {
-        return userName;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String userName) {
+        this.name = userName;
     }
 
     public int getAge() {
