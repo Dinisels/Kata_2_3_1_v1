@@ -26,14 +26,35 @@
                 <th>Name</th>
                 <th>Age</th>
                 <th>Email</th>
+                <th>Operationts</th>
+                <th>Operationts</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="user" items="${users}">
+
+                <c:url var="updateButton" value="/updateUser">
+
+<c:param name="userId" value="${user.id}">
+
+</c:param>
+                    
+                </c:url>
+
+                <c:url var="deleteButton" value="/deleteUser">
+
+                    <c:param name="userId" value="${user.id}"/>
+
+                </c:url>
                 <tr>
                     <td>${user.name}</td>
                     <td>${user.age}</td>
                     <td>${user.email}</td>
+                    <td><input type="button" value="update"
+                    onclick="window.location.href='${updateButton}'"/>
+                    <td><input type="button" value="delete"
+                       onclick="window.location.href='${deleteButton}'"/>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -45,7 +66,7 @@
 
 <input type="button" value="add new users"
 
-onclick="window.location.href = 'userInfoPage'"
+onclick="window.location.href = '/addNewUser'"
 
 />
 

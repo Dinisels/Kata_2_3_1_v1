@@ -30,9 +30,9 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public InternalResourceViewResolver jspViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");   // путь к папке с JSP
-        resolver.setSuffix(".jsp");              // расширение файлов
-        resolver.setOrder(Ordered.HIGHEST_PRECEDENCE); // чтобы этот resolver был приоритетным
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return resolver;
     }
 

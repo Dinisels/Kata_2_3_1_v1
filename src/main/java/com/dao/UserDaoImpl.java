@@ -25,14 +25,28 @@ public class UserDaoImpl implements UserDAO{
 
 
 @Override
-public void addUser(User user){
+public void saveUser(User user){
     //sessionFactory.getCurrentSession().save(user);
-    entityManager.persist(user);
+
+    if (user.getId() == null){
+        entityManager.persist(user);
+    }else {
+        entityManager.merge(user);
+    }
+
 }
 
+    @Override
+    public User getUserById(int userId) {
+        return entityManager.find(User.class,userId);
+    }
 
+    @Override
+    public void deleteUser(int userId) {
 
+        entityManager.remove(getUserById(userId));
 
+    }
 
 
 }

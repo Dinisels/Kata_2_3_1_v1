@@ -6,9 +6,7 @@ import com.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -36,7 +34,7 @@ public class UserController {
         return "user/userMainPage";
     }
 
-    @RequestMapping(value = "addNewUser")
+    @RequestMapping(value = "/addNewUser")
     public String AddNewUser(Model model) {
 
     User user = new User();
@@ -44,12 +42,26 @@ public class UserController {
         return "user/userInfoPage";
     }
 
-    @RequestMapping(value = "saveUser")
+    @RequestMapping(value = "/saveUser")
     public String SaveUser(@ModelAttribute("user") User user) {
 
-        userService.addUser(user);
+        userService.saveUser(user);
 
         return "redirect:/userAll";
+    }
+
+    @RequestMapping(value = "/updateUser")
+    public String UpdateUser(@RequestParam("userId")  int userId, Model model) {
+
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "user/userInfoPage";
+
+    }
+    @RequestMapping("deleteUser")
+    public String DeleteUser(@RequestParam("userId")  int userId, Model model) {
+        userService.deleteUser(userId);
+        return  "redirect:/userAll";
     }
 
 }

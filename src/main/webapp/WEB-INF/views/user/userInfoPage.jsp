@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
@@ -8,13 +10,15 @@
 </h2>
 <br>
 
-<form:form action="saveUser" modelAttribute="user">
+<form:form action="/saveUser" modelAttribute="user">
 
-    Name <form: input path = "name"/>
+    <form:hidden path="id"/>
+
+    name <form:input path = "name"/>
     <br><br>
-    Age <form: input path = "age"/>
+    age <form:input path = "age"/>
     <br><br>
-    Email <form: input path = "email"/>
+    email <form:input path = "email"/>
     <br><br>
 
     <input type="submit" value="ok">
