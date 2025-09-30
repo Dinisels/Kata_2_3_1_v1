@@ -1,13 +1,12 @@
 package com.services;
 
 import com.model.User;
-
 import java.util.List;
 
 public interface UserService {
-
-    public List<User> getAllUsers();
-    public void saveUser(User user);
-    public User getUserById(int userId);
-    public void deleteUser(int userId);
+    List<User> getAllUsers();
+    void createUser(User user);
+    void updateUser(User user);
+    User getUserById(int userId);
+    void deleteUser(int userId);
 }

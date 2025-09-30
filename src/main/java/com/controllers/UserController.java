@@ -1,6 +1,5 @@
 package com.controllers;
 
-
 import com.model.User;
 import com.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,57 +10,45 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-    // ЗДЕСЬ ЧЕРЕЗ СЕРВИС
-
-    //private final UserDao userDao;
-
-//    @Autowired
-//    public UserController(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-
     @Autowired
     private UserService userService;
 
-
-
-
     @GetMapping("/userAll")
-    public String GetAllUser(Model model) {
-        System.out.println("users size = " + userService.getAllUsers().size());
+    public String getAllUser(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-
         return "user/userMainPage";
     }
 
-    @RequestMapping(value = "/addNewUser")
-    public String AddNewUser(Model model) {
-
-    User user = new User();
-    model.addAttribute("user", user);
+    @GetMapping("/addNewUser")
+    public String addNewUser(Model model) {
+        model.addAttribute("user", new User());
         return "user/userInfoPage";
     }
 
-    @RequestMapping(value = "/saveUser")
-    public String SaveUser(@ModelAttribute("user") User user) {
 
-        userService.saveUser(user);
-
+    @PostMapping("/createUser")
+    public String createUser(@ModelAttribute("user") User user) {
+        userService.createUser(user);
         return "redirect:/userAll";
     }
 
-    @RequestMapping(value = "/updateUser")
-    public String UpdateUser(@RequestParam("userId")  int userId, Model model) {
 
-        User user = userService.getUserById(userId);
-        model.addAttribute("user", user);
+    @GetMapping("/updateUser")
+    public String updateUserForm(@RequestParam("userId") int userId, Model model) {
+        model.addAttribute("user", userService.getUserById(userId));
         return "user/userInfoPage";
-
     }
-    @RequestMapping("deleteUser")
-    public String DeleteUser(@RequestParam("userId")  int userId, Model model) {
+
+
+    @PostMapping("/updateUser")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
+        return "redirect:/userAll";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userId") int userId) {
         userService.deleteUser(userId);
-        return  "redirect:/userAll";
+        return "redirect:/userAll";
     }
-
 }
