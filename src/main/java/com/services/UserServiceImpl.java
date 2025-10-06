@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updateUser(User user) {
-        // Получаем пользователя через метод, который сам проверит существование
         User existing = getUserById(user.getId());
         userDAO.updateUser(user);
     }
@@ -49,7 +48,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(int userId) {
-        // Получаем пользователя через метод, который сам проверит существование
         User user = getUserById(userId);
         userDAO.deleteUser(user);
     }
