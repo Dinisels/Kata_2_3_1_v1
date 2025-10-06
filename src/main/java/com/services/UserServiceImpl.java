@@ -34,29 +34,23 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updateUser(User user) {
-        if (user.getId() == null) {
-            throw new IllegalArgumentException("Для обновления требуется ID");
-        }
-        User existing = userDAO.getUserById(user.getId());
-        if (existing == null) {
-            throw new UserNotFoundException(user.getId());
-        }
+        // Получаем пользователя через метод, который сам проверит существование
+        User existing = getUserById(user.getId());
         userDAO.updateUser(user);
     }
 
     @Override
     @Transactional(readOnly = true)
     public User getUserById(int userId) {
-        return userDAO.getUserById(userId);
+        return userDAO.getUserById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     @Override
     @Transactional
     public void deleteUser(int userId) {
-        User u = userDAO.getUserById(userId);
-        if (u == null) {
-            throw new UserNotFoundException(userId);
-        }
-        userDAO.deleteUser(userId);
+        // Получаем пользователя через метод, который сам проверит существование
+        User user = getUserById(userId);
+        userDAO.deleteUser(user);
     }
 }
